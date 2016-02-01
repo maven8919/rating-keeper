@@ -8,5 +8,15 @@
 	</head>
 	<body>
 	   <h1>Rating keeper</h1>
+	   <table class="table table-bordered">
+	       <tr>
+	           <th>Username</th>
+	           <th>Role</th>
+	       </tr>
+	       <tr th:each="user : ${users}">
+	           <td th:text="${user.username}">Username</td>
+	           <td th:text="${user.userRole}">Role</td>
+	       </tr>
+	   </table>
 	</body>
 </html>
