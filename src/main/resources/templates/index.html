@@ -7,6 +7,9 @@
     	<script type="text/javascript" src="/webjars/jquery/2.2.0/jquery.min.js"></script>
 	</head>
 	<body>
+	   <span class="label label-success" th:text="${message}">Success</span>
 	   <h1>Rating keeper</h1>
+	   <a th:href="@{/user/login}">Login</a>
+	   <a th:href="@{/user/create}">Registration</a>
 	</body>
 </html>

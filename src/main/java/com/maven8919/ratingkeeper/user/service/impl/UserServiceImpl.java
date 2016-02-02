@@ -8,7 +8,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.maven8919.ratingkeeper.user.domain.UserEntity;
-import com.maven8919.ratingkeeper.user.model.AddUserRequest;
 import com.maven8919.ratingkeeper.user.repository.UserRepository;
 import com.maven8919.ratingkeeper.user.service.UserService;
 import com.maven8919.ratingkeeper.user.transformer.AddUserRequestToUserEntityTransformer;
@@ -17,13 +16,11 @@ import com.maven8919.ratingkeeper.user.transformer.AddUserRequestToUserEntityTra
 public class UserServiceImpl implements UserService {
     
     private UserRepository userRepository;
-    private AddUserRequestToUserEntityTransformer addUserRequestToUserEntityTransformer;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, AddUserRequestToUserEntityTransformer addUserRequestToUserEntityTransformer) {
         super();
         this.userRepository = userRepository;
-        this.addUserRequestToUserEntityTransformer = addUserRequestToUserEntityTransformer;
     }
 
     @Override
@@ -42,8 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity saveUser(AddUserRequest addUserRequest) {
-        UserEntity userEntity = addUserRequestToUserEntityTransformer.transform(addUserRequest);
+    public UserEntity saveUser(UserEntity userEntity) {
         return userRepository.save(userEntity);
     }
 
