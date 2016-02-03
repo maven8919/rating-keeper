@@ -7,26 +7,28 @@
     	<link rel='stylesheet' href='/webjars/bootstrap/3.3.6/css/bootstrap.min.css'/>
 	</head>
 	<body>
-	   <h1>Rating keeper</h1>
-	   <form action="#" th:action="@{/user/create}" th:object="${addUserRequest}" method="post" class="form-horizontal" id="sign-up-form">
+	    <h1>Rating keeper</h1>
+	   	
+	   	<p th:each="err : ${#fields.errors('addUserRequest')}" th:text="${err}">Errors</p>
+	    <form action="#" th:action="@{/user/create}" th:object="${addUserRequest}" method="post" class="form-horizontal" id="sign-up-form">
 			<div class="form-group">
 				<label for="username" class="col-sm-2 control-label">Username</label>
 				<div class="col-sm-2">
-				    <input type="text" th:value="${addUserRequest.username}" class="form-control" id="username" name="username" placeholder="Username"/>
-				    <span class="help-inline" th:errors="*{username}">Username error</span>
+					<input type="text" th:field="*{username}" th:value="${addUserRequest.username}" class="form-control" placeholder="Username"/>				    
+					<span class="help-inline" th:errors="*{username}">Username error</span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="password" class="col-sm-2 control-label">Password</label>
 				<div class="col-sm-2">
-				    <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
+				    <input type="password" th:field="*{password}" class="form-control" placeholder="Password"/>
 				    <span class="help-inline" th:errors="*{password}">Password error</span>
 				</div>
 			</div>
 			<div class="form-group">
                 <label for="passwordConfirmation" class="col-sm-2 control-label">Password confirmation</label>
                 <div class="col-sm-2">
-                    <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" placeholder="Password confirmation"/>
+                    <input type="password" th:field="*{passwordConfirmation}" class="form-control" placeholder="Password confirmation"/>
                     <span class="help-inline" th:errors="*{passwordConfirmation}">Password confirmation error</span>
                 </div>
             </div>
@@ -35,7 +37,7 @@
 				    <button type="submit" class="btn btn-default">Sign up</button>
 				</div>
 			</div>
-	   </form>
+	     </form>
 	   
 	</body>
 </html>
