@@ -8,15 +8,15 @@ import com.maven8919.ratingkeeper.user.domain.UserRole;
 public class AddUserRequest {
     
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255, message = "Please enter your username.")
     private String username;
     
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255, message = "Please enter your password.")
     private String password;
     
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255, message = "Please enter your password confirmation.")
     private String passwordConfirmation;
     
     @NotNull

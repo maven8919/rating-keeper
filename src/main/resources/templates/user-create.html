@@ -2,29 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8"/>
-		<link rel='stylesheet' href='/webjars/bootstrap/3.3.6/css/bootstrap.min.css'/>
-    	<script type="text/javascript" src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     	<script type="text/javascript" src="/webjars/jquery/2.2.0/jquery.min.js"></script>
+    	<script type="text/javascript" src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    	<link rel='stylesheet' href='/webjars/bootstrap/3.3.6/css/bootstrap.min.css'/>
 	</head>
 	<body>
 	   <h1>Rating keeper</h1>
-	   <form action="#" th:action="@{/user/create}" th:object="${addUserRequest}" method="post" class="form-horizontal">
+	   <form action="#" th:action="@{/user/create}" th:object="${addUserRequest}" method="post" class="form-horizontal" id="sign-up-form">
 			<div class="form-group">
 				<label for="username" class="col-sm-2 control-label">Username</label>
 				<div class="col-sm-2">
-				    <input type="text" class="form-control" id="username" name="username" placeholder="Username" />
+				    <input type="text" th:value="${addUserRequest.username}" class="form-control" id="username" name="username" placeholder="Username"/>
+				    <span class="help-inline" th:errors="*{username}">Username error</span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="password" class="col-sm-2 control-label">Password</label>
 				<div class="col-sm-2">
-				    <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+				    <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
+				    <span class="help-inline" th:errors="*{password}">Password error</span>
 				</div>
 			</div>
 			<div class="form-group">
                 <label for="passwordConfirmation" class="col-sm-2 control-label">Password confirmation</label>
                 <div class="col-sm-2">
-                    <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" placeholder="Password confirmation" />
+                    <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" placeholder="Password confirmation"/>
+                    <span class="help-inline" th:errors="*{passwordConfirmation}">Password confirmation error</span>
                 </div>
             </div>
             <div class="form-group">
@@ -33,5 +36,6 @@
 				</div>
 			</div>
 	   </form>
+	   
 	</body>
 </html>

@@ -26,21 +26,16 @@ public class UserCreatePostController {
         this.userService = userService;
         this.addUserRequestToUserEntityTransformer = addUserRequestToUserEntityTransformer;
     }
-
-    @ModelAttribute(value = "addUserRequest")
-    public AddUserRequest createListUsersModel() {
-        return new AddUserRequest();
-    }
     
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
-    public String createUser(@Valid AddUserRequest addUserRequest, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String createUser(@Valid @ModelAttribute(value = "addUserRequest") AddUserRequest addUserRequest, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         String result = "redirect:/";
         if (bindingResult.hasErrors()) {
-            System.out.println("Has errors!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            result = "/";
+            result = "user-create";
+        } else {
+            userService.saveUser(addUserRequestToUserEntityTransformer.transform(addUserRequest));
+            redirectAttributes.addFlashAttribute("message", String.format("%s saved!", addUserRequest.getUsername()));
         }
-        userService.saveUser(addUserRequestToUserEntityTransformer.transform(addUserRequest));
-        redirectAttributes.addFlashAttribute("message", String.format("%s saved!", addUserRequest.getUsername()));
         return result;
     }
     
